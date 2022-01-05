@@ -10,6 +10,7 @@ services:
       - "./${ZOOKEEPER_DIR}:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+
   kafka:
     container_name: kafka
     image: docker.io/bitnami/kafka:3
@@ -27,6 +28,16 @@ services:
       - KAFKA_CREATE_TOPICS="${KAFKA_CREATE_TOPICS}:${KAFKA_TOPIC_PARTITION}:${KAFKA_TOPIC_REPLICA}"
     depends_on:
       - zookeeper
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+    volumes:
+      - ./${PROMETHEUS_VOLUEM}:/etc/prometheus
+    links:
+      - kafka
 
 # volumes:
 #   zookeeper_data:
