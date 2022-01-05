@@ -6,8 +6,9 @@ services:
     image: docker.io/bitnami/zookeeper:3.7
     ports:
       - "${ZOOKEEPER_PORT}:2181"
+      - "8080:8080"
     volumes:
-      - "./${ZOOKEEPER_DIR}:/bitnami"
+      - "zookeeper_data:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
@@ -17,7 +18,7 @@ services:
     ports:
       - "${KAFKA_PORT}:9092"
     volumes:
-      - "./${KAFKA_DIR}:/bitnami"
+      - "kafka_data:/bitnami"
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
@@ -39,8 +40,8 @@ services:
     links:
       - kafka
 
-# volumes:
-#   zookeeper_data:
-#     driver: local
-#   kafka_data:
-#     driver: local
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
