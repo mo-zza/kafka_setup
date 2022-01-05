@@ -1,1 +1,3 @@
 .env
+kafka_data/kafka/data
+zookeeper_data/zookeeper/*
