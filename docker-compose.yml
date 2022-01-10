@@ -1,6 +1,25 @@
-version: "3.9"
+version: "3"
 
 services:
+  kafka:
+    container_name: kafka
+    build: ./kafka
+    image: ibct-kafka:1.0.0
+    ports:
+      - "9092:9092"
+    volumes:
+      - ./kafka_2.13-3.0.0:/app/kafka_config
+    command: sh -c "bin/zookeeper-server-start.sh config/zookeeper.properties & bin/kafka-server-start.sh config/server.properties"
+
+  kafka_exporter:
+    container_name: kafka-exporter
+    image: danielqsj/kafka-exporter
+    command: --kafka.server=192.168.10.65:9092
+    ports:
+      - "9308:9308"
+    depends_on: 
+      - kafka
+
   prometheus:
     container_name: prometheus
     image: prom/prometheus
@@ -8,3 +27,5 @@ services:
       - "${PROMETHEUS_PORT}:9090"
     volumes:
       - ./${PROMETHEUS_VOLUEM}:/etc/prometheus
+    depends_on: 
+      - kafka_exporter
