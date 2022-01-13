@@ -15,13 +15,13 @@ services:
     container_name: kafka
     image: docker.io/bitnami/kafka:3
     ports:
-      - "9092:9092"
+      - "19092:9092"
     volumes:
       - ./kafka_data:/bitnami
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:19092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:19092
       - KAFKA_INTER_BROKER_USER=ibct
       - KAFKA_INTER_BROKER_PASSWORD=qwer1234
       - KAFKA_BROKER_ID=1
@@ -33,7 +33,7 @@ services:
   kafka_exporter:
     container_name: kafka-exporter
     image: danielqsj/kafka-exporter
-    command: --kafka.server=192.168.10.65:9092
+    command: --kafka.server=192.168.10.65:19092
     ports:
       - "9308:9308"
     depends_on: 
