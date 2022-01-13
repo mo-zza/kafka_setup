@@ -33,7 +33,7 @@ services:
   kafka_exporter:
     container_name: kafka-exporter
     image: danielqsj/kafka-exporter
-    command: --kafka.server=192.168.10.65:19092
+    command: --kafka.server=129.154.213.183:19092
     ports:
       - "9308:9308"
     depends_on: 

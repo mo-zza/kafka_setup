@@ -4,4 +4,4 @@ global:
 scrape_configs:
 - job_name: kafka
   static_configs:
-          - targets: ['192.168.10.65:19308']
+          - targets: ['129.154.213.183:19308']
