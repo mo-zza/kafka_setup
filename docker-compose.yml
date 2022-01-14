@@ -20,15 +20,29 @@ services:
       - ./kafka_data:/bitnami
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:19092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:19092
-      - KAFKA_INTER_BROKER_USER=ibct
-      - KAFKA_INTER_BROKER_PASSWORD=qwer1234
+      # - KAFKA_CFG_LISTENERS=PLAINTEXT://129.154.213.183:19092
+      # - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://129.154.213.183:19092
+      # - KAFKA_INTER_BROKER_USER=ibct
+      # - KAFKA_INTER_BROKER_PASSWORD=qwer1234
       - KAFKA_BROKER_ID=1
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
     # command: sh -c "bin/zookeeper-server-start.sh config/zookeeper.properties & bin/kafka-server-start.sh config/server.properties"
+
+  kafka_ui:
+    container_name: kafka_ui
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+      - kafka
+    ports:
+      - 8080:8080
+    environment:
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    depends_on: 
+      - kafka
 
   kafka_exporter:
     container_name: kafka-exporter
