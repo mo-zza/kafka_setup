@@ -1,7 +1,14 @@
 # Kafka Setup
 
-## Description
+## Table of Contents
+- [Description](#description)
+- [Structure](#structure)
+- [Environment Variables](#environment-variables)
+- [Usage](#usage)
+  - [Setup Environment Variables](#setup-environment-variables)
+  - [Start](#start)
 
+## Description
 This is a simple Kafka setup for small size projects. It is based on
 the [confluentinc/cp-kafka](https://hub.docker.com/r/confluentinc/cp-kafka/) image.
 
