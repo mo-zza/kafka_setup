@@ -1,4 +1,8 @@
+### IDEA ###
+.idea
+
+### Environment ###
 .env
-kafka_data/kafka/data
-zookeeper_data/zookeeper/*
-kafka_2.13-3.0.0/logs
+
+### Data ###
+data
