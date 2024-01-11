@@ -14,13 +14,13 @@ the [confluentinc/cp-kafka](https://hub.docker.com/r/confluentinc/cp-kafka/) ima
 
 ## Structure
 ```mermaid
-graph LR
-ZK[Zookeeper] --> K1[Kafka 1]
-ZK[Zookeeper] --> K2[Kafka 2]
-ZK[Zookeeper] --> K3[Kafka 3]
+graph RL
 K1[Kafka 1] --> KUI[Kafka UI]
-K2[Kafka 2] --> KUI[Kafka UI]
-K3[Kafka 3] --> KUI[Kafka UI]
+K2[Kafka 2] --> KUI
+K3[Kafka 3] --> KUI
+K1 --> KC[Kafka Connect]
+K2 --> KC
+K3 --> KC
 ```
 
 ## Environment Variables
