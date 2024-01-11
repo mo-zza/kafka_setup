@@ -27,8 +27,6 @@ K3[Kafka 3] --> KUI[Kafka UI]
 
 | Key                | Description                  | Example        |
 |--------------------|------------------------------|----------------|
-| ZOOKEEPER_PORT     | Zookeeper port               | 2181           |
-| ZOOKEEPER_DIR      | Zookeeper data dir source    | zookeeper_data |
 | PROFILE            | Kafka-ui cluster name        | local          |
 | KAFKA_1_PORT       | Kafka port                   | 9092           |
 | KAFKA_2_PORT       | Kafka port                   | 9093           |
@@ -52,8 +50,6 @@ $ vim .env
 # or
 $ vi .env
 ``
-ZOOKEEPER_PORT=2181
-ZOOKEEPER_DIR=zookeeper_data
 KAFKA_1_PORT=9092
 KAFKA_2_PORT=9093
 KAFKA_3_PORT=9094
