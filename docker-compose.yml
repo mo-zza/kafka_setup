@@ -3,9 +3,6 @@ services:
   kafka-1:
     container_name: kafka-1
     image: confluentinc/cp-kafka:7.5.3
-    securityContext:
-      runAsUser: 0
-      runAsGroup: 0
     platform: linux/amd64
     ports:
       - "${KAFKA_1_PORT}:9092"
@@ -26,9 +23,6 @@ services:
   kafka-2:
     container_name: kafka-2
     image: confluentinc/cp-kafka:7.5.3
-    securityContext:
-      runAsUser: 0
-      runAsGroup: 0
     platform: linux/amd64
     ports:
       - "${KAFKA_2_PORT}:9093"
@@ -49,9 +43,6 @@ services:
   kafka-3:
     container_name: kafka-3
     image: confluentinc/cp-kafka:7.5.3
-    securityContext:
-      runAsUser: 0
-      runAsGroup: 0
     platform: linux/amd64
     ports:
       - "${KAFKA_3_PORT}:9094"
