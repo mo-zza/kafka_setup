@@ -59,32 +59,6 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       CLUSTER_ID: ${KAFKA_CLUSTER_ID:-MkU3OEVBNTcwNTJENDM2Qk}
 
-  kafka-connect:
-    container_name: kafka-connect
-    image: confluentinc/cp-kafka-connect:7.5.3
-    ports:
-      - "${KAFKA_CONNECT_PORT}:8083"
-    volumes:
-      - ./data/${KAFKA_DIR}/kafka-connect/plugin:/usr/share/confluent-hub-components
-    environment:
-      CONNECT_BOOTSTRAP_SERVERS: kafka-1:29092,kafka-2:29092,kafka-3:29092
-      CONNECT_REST_PORT: 8083
-      CONNECT_GROUP_ID: kafka-connect-group
-      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect-config
-      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect-offsets
-      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect-status
-      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-      CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-      CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-      CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
-      CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
-      CONNECT_PLUGIN_PATH: /usr/share/confluent-hub-components
-    depends_on:
-      - kafka-1
-      - kafka-2
-      - kafka-3
-
   kafka-ui:
     image: provectuslabs/kafka-ui
     platform: linux/amd64
@@ -96,4 +70,6 @@ services:
       KAFKA_CLUSTERS_0_NAME: ${PROFILE:-local}
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-1:29092,kafka-2:29092,kafka-3:29092
     depends_on:
-      - kafka-connect
+      - kafka-1
+      - kafka-2
+      - kafka-3
